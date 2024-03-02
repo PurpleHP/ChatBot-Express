@@ -24,14 +24,14 @@ app.use(express.json());
 
 app.use(cors());
 
-async function getResponse(questionTemp){
-    let response = await herc.question({model:"v3",content:questionTemp});
+async function getResponse(questionTemp, userId){
+    let response = await herc.betaQuestion({content:questionTemp, user: userId});
     return response.reply;        
 } 
 
 app.post('/Question', async (req, res) => {
-    const { question } = req.body;
-    let answer = await getResponse(question);
+    const { question, user } = req.body;
+    let answer = await getResponse(question, user.id);
     if(answer == null){
         answer = "I don't know";
     }
