@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cors());
 
 async function getResponse(questionTemp, userId){
-    let response = await herc.betaQuestion({content:questionTemp, user: user});
+    let response = await herc.betaQuestion({content:questionTemp, user: userId});
     return response.reply;        
 } 
 
